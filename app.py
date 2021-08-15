@@ -48,7 +48,7 @@ def graph(lbFile):
 	y = df["yloc"]
 	w, h = pyautogui.size()
 
-	plt.hist2d(x,y, bins=[np.arange(0,w,20),np.arange(0,h,20)])
+	plt.hist2d(x,y, bins=[np.arange(0,w,10),np.arange(0,h,10)])
 	plt.gca().invert_yaxis()
 
 	plt.show()
@@ -69,7 +69,7 @@ def tkinter():
 	text.insert(tk.END, "Press the START button to start the mouse monitoring. Press the STOP button to end it. \nThe CSV files containing the recordings (in form of x and y cooridnates) are stored in " + os.getcwd() + '\data')
 
 	scrl = tk.Scrollbar(frame) 
-	lbFile = tk.Listbox(frame, font=("Roboto", 11, 'underline'), yscrollcommand = scrl.set, selectmode='multiple')
+	lbFile = tk.Listbox(frame, font=("Roboto", 11, 'underline'), yscrollcommand = scrl.set)
 
 	btnStart = tk.Button(m, text='Start', width=25, font=font, command=lambda: [threading.Thread(target=start, args=(lbFile,)).start(), btnStart.config(state=tk.DISABLED), btnStop.config(state=tk.NORMAL)])
 	btnStop = tk.Button(m, text='Stop', width=25, font=font, command=lambda: [stop(), btnStart.config(state=tk.NORMAL), btnStop.config(state=tk.DISABLED), btnResult.config(state=tk.DISABLED)], state = 'disabled')
